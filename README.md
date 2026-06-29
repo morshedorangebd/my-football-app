@@ -1,4 +1,21 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# My Football App
+
+A modern football (soccer) application built with Next.js, featuring live matches, highlights, and team information.
+
+## Features
+
+- **Match Listings**: Browse upcoming and live matches with scores, teams, and league information
+- **Video Highlights**: Watch match highlights with embedded YouTube videos
+- **Team Information**: View team details, lineups, statistics, and standings
+- **League Data**: Explore various football leagues worldwide
+- **Responsive Design**: Mobile-friendly layout with dark mode support
+
+## Tech Stack
+
+- **Framework**: Next.js 16.2.9 (App Router)
+- **UI**: Tailwind CSS v4, React 19
+- **Icons**: lucide-react
+- **Styling**: tailwind-merge, clsx
 
 ## Getting Started
 
@@ -16,21 +33,48 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+├── app/
+│   ├── layout.tsx       # Root layout with navbar/footer
+│   ├── page.tsx         # Home page (matches + highlights)
+│   ├── matches/         # Match-related pages
+│   ├── teams/           # Team pages
+│   ├── players/         # Player pages
+│   ├── leagues/         # League pages
+│   ├── highlights/      # Highlight video gallery
+│   └── api/             # API routes (mock data)
+├── components/
+│   ├── MatchCard.tsx    # Match card component
+│   ├── HighlightCard.tsx # Highlight card component
+│   ├── Navbar.tsx       # Navigation
+│   ├── Footer.tsx       # Footer
+│   └── EmptyState.tsx   # Empty state component
+└── lib/
+    └── real-data.ts     # Mock API data
+```
+
+## API Endpoints
+
+| Endpoint | Description |
+|----------|-------------|
+| `/api/matches` | Get matches with filtering (league, team, date) |
+| `/api/highlights` | Get highlight videos |
+| `/api/teams` | Get team information |
+| `/api/players` | Get player data |
+| `/api/leagues` | Get league information |
+| `/api/standings` | Get league standings |
+| `/api/statistics/[matchId]` | Get match statistics |
 
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial
 
 ## Deploy on Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
