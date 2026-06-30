@@ -8,8 +8,8 @@ interface MatchDetail {
   date: string;
   country: { code: string; name: string; logo: string };
   state: { description: string; score?: { current?: string | null } };
-  awayTeam: { id: number; name: string; logo: string; shots?: unknown[]; topPlayers?: unknown[] };
-  homeTeam: { id: number; name: string; logo: string; shots?: unknown[]; topPlayers?: unknown[] };
+  awayTeam: { id: number; name: string; logo: string | null; shots?: unknown[]; topPlayers?: unknown[] };
+  homeTeam: { id: number; name: string; logo: string | null; shots?: unknown[]; topPlayers?: unknown[] };
   league: { id: number; name: string; logo: string | null };
   venue?: { city: string; name: string; country: string; capacity: string };
   referee?: { name: string; nationality: string };
@@ -76,12 +76,16 @@ export default async function MatchDetailPage({
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 mb-4 sm:mb-6">
           <div className="flex flex-col items-center w-full sm:w-auto">
             <Link href={`/teams/${match.homeTeam.id}`} className="flex flex-col items-center gap-2 hover:opacity-75 transition-opacity min-w-[44px]">
-              <Image src={match.homeTeam.logo} alt={match.homeTeam.name} width={48} height={48} className="w-10 h-10 sm:w-12 sm:h-12 object-contain" />
+              {match.homeTeam.logo ? (
+                <Image src={match.homeTeam.logo} alt={match.homeTeam.name} width={48} height={48} className="w-10 h-10 sm:w-12 sm:h-12 object-contain" />
+              ) : (
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-zinc-200 dark:bg-zinc-700 rounded" />
+              )}
               <span className="font-medium text-center text-sm sm:text-base">{match.homeTeam.name}</span>
             </Link>
           </div>
 
-          <div className="text-center order-first sm:order-none">
+          <div className="text-center">
             {match.state.description === 'Not started' ? (
               <span className="text-xl sm:text-2xl font-bold text-zinc-400">vs</span>
             ) : (
@@ -98,7 +102,11 @@ export default async function MatchDetailPage({
 
           <div className="flex flex-col items-center w-full sm:w-auto">
             <Link href={`/teams/${match.awayTeam.id}`} className="flex flex-col items-center gap-2 hover:opacity-75 transition-opacity min-w-[44px]">
-              <Image src={match.awayTeam.logo} alt={match.awayTeam.name} width={48} height={48} className="w-10 h-10 sm:w-12 sm:h-12 object-contain" />
+              {match.awayTeam.logo ? (
+                <Image src={match.awayTeam.logo} alt={match.awayTeam.name} width={48} height={48} className="w-10 h-10 sm:w-12 sm:h-12 object-contain" />
+              ) : (
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-zinc-200 dark:bg-zinc-700 rounded" />
+              )}
               <span className="font-medium text-center text-sm sm:text-base">{match.awayTeam.name}</span>
             </Link>
           </div>
