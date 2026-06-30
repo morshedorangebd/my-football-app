@@ -1,14 +1,18 @@
 # My Football App
 
-A modern football (soccer) application built with Next.js, featuring live matches, highlights, and team information.
+A modern football (soccer) application built with Next.js, featuring live matches, highlights, team information, and a fully responsive design with dark/light mode support.
 
 ## Features
 
 - **Match Listings**: Browse upcoming and live matches with scores, teams, and league information
+- **Country Filtering**: Filter matches by country (England, Spain, Germany, Italy, France, Brazil)
 - **Video Highlights**: Watch match highlights with embedded YouTube videos
-- **Team Information**: View team details, lineups, statistics, and standings
+- **Team Information**: View team details with responsive badge grid layout
 - **League Data**: Explore various football leagues worldwide
-- **Responsive Design**: Mobile-friendly layout with dark mode support
+- **Player Profiles**: Browse player cards with responsive grid layout
+- **Fully Responsive**: Optimized for desktop, tablet, and mobile devices
+- **Dark/Light Mode**: Animated theme toggle with sun/moon transition and localStorage persistence
+- **Mobile Navigation**: Hamburger menu for tablet and mobile views
 
 ## Tech Stack
 
@@ -38,21 +42,30 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ```
 src/
 ├── app/
-│   ├── layout.tsx       # Root layout with navbar/footer
+│   ├── layout.tsx       # Root layout with navbar/footer and theme provider
 │   ├── page.tsx         # Home page (matches + highlights)
+│   ├── globals.css      # Global styles with dark mode variables
 │   ├── matches/         # Match-related pages
+│   │   ├── page.tsx     # Matches list with country filtering
+│   │   ├── [id]/        # Match detail page
+│   │   ├── loading.tsx  # Skeleton loader for matches
+│   │   └── error.tsx    # Error boundary
 │   ├── teams/           # Team pages
 │   ├── players/         # Player pages
 │   ├── leagues/         # League pages
 │   ├── highlights/      # Highlight video gallery
 │   └── api/             # API routes (mock data)
 ├── components/
-│   ├── MatchCard.tsx    # Match card component
+│   ├── MatchCard.tsx    # Client match card with client-side date formatting
 │   ├── HighlightCard.tsx # Highlight card component
-│   ├── Navbar.tsx       # Navigation
+│   ├── TeamBadge.tsx    # Responsive team logo badge
+│   ├── Navbar.tsx       # Responsive navigation with theme toggle
 │   ├── Footer.tsx       # Footer
-│   └── EmptyState.tsx   # Empty state component
+│   ├── EmptyState.tsx   # Empty state component
+│   ├── ThemeToggle.tsx  # Animated sun/moon theme switcher
+│   └── ThemeProvider.tsx # Theme context provider
 └── lib/
+    ├── utils.ts         # cn() utility for class merging
     └── real-data.ts     # Mock API data
 ```
 
@@ -60,13 +73,24 @@ src/
 
 | Endpoint | Description |
 |----------|-------------|
-| `/api/matches` | Get matches with filtering (league, team, date) |
+| `/api/matches` | Get matches with filtering (country, league, team, date) |
+| `/api/matches/[id]` | Get match details |
 | `/api/highlights` | Get highlight videos |
 | `/api/teams` | Get team information |
 | `/api/players` | Get player data |
 | `/api/leagues` | Get league information |
 | `/api/standings` | Get league standings |
 | `/api/statistics/[matchId]` | Get match statistics |
+
+## Recent Enhancements
+
+- **Dark/Light Mode**: Animated theme toggle with smooth sun/moon transition, persists preference in localStorage
+- **Fully Responsive Design**: Complete mobile, tablet, and desktop optimization across all pages
+- **Country Filtering**: Working filter system on the matches page (England, Spain, Germany, Italy, France, Brazil)
+- **Hydration Fixes**: Resolved React hydration mismatches in match cards and detail pages
+- **Mobile Match Layout**: Fixed mobile layout to show Team A → Score/Status → Team B order
+- **Empty Logo Handling**: Graceful placeholder when team logos are missing
+- **Skeleton Loaders**: Responsive loading skeletons for all dynamic pages
 
 ## Learn More
 
