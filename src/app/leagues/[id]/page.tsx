@@ -26,7 +26,7 @@ export default async function LeagueHubPage({
 
   if (!leagueRes.ok) {
     return (
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
         <EmptyState title="League not found" />
       </div>
     );
@@ -50,21 +50,21 @@ export default async function LeagueHubPage({
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <div className="flex items-center gap-4 mb-8">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+      <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 mb-6 sm:mb-8">
         {league.logo && (
-          <Image src={league.logo} alt={league.name} width={48} height={48} className="object-contain" />
+          <Image src={league.logo} alt={league.name} width={48} height={48} className="w-10 h-10 sm:w-12 sm:h-12 object-contain" />
         )}
         <div>
-          <h1 className="text-3xl font-bold text-zinc-900 dark:text-white">{league.name}</h1>
-          <p className="text-zinc-500">{league.country.name}</p>
+          <h1 className="text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-white">{league.name}</h1>
+          <p className="text-sm sm:text-base text-zinc-500">{league.country.name}</p>
         </div>
       </div>
 
-      <h2 className="text-xl font-bold mb-4 text-zinc-900 dark:text-white">Matches</h2>
+      <h2 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-zinc-900 dark:text-white">Matches</h2>
 
       {matches.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
           {matches.map((match) => (
             <MatchCard
               key={match.id}

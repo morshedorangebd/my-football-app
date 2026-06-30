@@ -50,7 +50,7 @@ export default async function MatchDetailPage({
 
   if (!match) {
     return (
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
         <EmptyState title="Match not found" />
       </div>
     );
@@ -66,60 +66,60 @@ export default async function MatchDetailPage({
   });
 
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <div className="bg-white dark:bg-zinc-900 rounded-lg shadow p-6 mb-6 border border-zinc-200 dark:border-zinc-800">
-        <div className="flex items-center justify-between mb-4">
-          <span className="text-sm text-zinc-500">{match.league.name}</span>
-          <span className="text-sm text-zinc-500">{formattedDate}</span>
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+      <div className="bg-white dark:bg-zinc-900 rounded-lg shadow p-4 sm:p-6 mb-6 border border-zinc-200 dark:border-zinc-800">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3 sm:mb-4 gap-1 sm:gap-0">
+          <span className="text-xs sm:text-sm text-zinc-500">{match.league.name}</span>
+          <span className="text-xs sm:text-sm text-zinc-500">{formattedDate}</span>
         </div>
 
-        <div className="flex items-center justify-center gap-8 mb-6">
-          <div className="flex flex-col items-center">
-            <Link href={`/teams/${match.homeTeam.id}`} className="flex flex-col items-center gap-2 hover:opacity-75 transition-opacity">
-              <Image src={match.homeTeam.logo} alt={match.homeTeam.name} width={48} height={48} className="object-contain" />
-              <span className="font-medium text-center">{match.homeTeam.name}</span>
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 mb-4 sm:mb-6">
+          <div className="flex flex-col items-center w-full sm:w-auto">
+            <Link href={`/teams/${match.homeTeam.id}`} className="flex flex-col items-center gap-2 hover:opacity-75 transition-opacity min-w-[44px]">
+              <Image src={match.homeTeam.logo} alt={match.homeTeam.name} width={48} height={48} className="w-10 h-10 sm:w-12 sm:h-12 object-contain" />
+              <span className="font-medium text-center text-sm sm:text-base">{match.homeTeam.name}</span>
             </Link>
           </div>
 
-          <div className="text-center">
+          <div className="text-center order-first sm:order-none">
             {match.state.description === 'Not started' ? (
-              <span className="text-2xl font-bold text-zinc-400">vs</span>
+              <span className="text-xl sm:text-2xl font-bold text-zinc-400">vs</span>
             ) : (
-              <span className="text-3xl font-bold">
+              <span className="text-2xl sm:text-3xl font-bold">
                 {match.state.score?.current?.split('-')[0] || '-'} - {match.state.score?.current?.split('-')[1] || '-'}
               </span>
             )}
-            <div className="mt-2">
-              <span className="text-xs px-3 py-1 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300">
+            <div className="mt-1 sm:mt-2">
+              <span className="text-xs px-2 sm:px-3 py-1 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300">
                 {match.state.description}
               </span>
             </div>
           </div>
 
-          <div className="flex flex-col items-center">
-            <Link href={`/teams/${match.awayTeam.id}`} className="flex flex-col items-center gap-2 hover:opacity-75 transition-opacity">
-              <Image src={match.awayTeam.logo} alt={match.awayTeam.name} width={48} height={48} className="object-contain" />
-              <span className="font-medium text-center">{match.awayTeam.name}</span>
+          <div className="flex flex-col items-center w-full sm:w-auto">
+            <Link href={`/teams/${match.awayTeam.id}`} className="flex flex-col items-center gap-2 hover:opacity-75 transition-opacity min-w-[44px]">
+              <Image src={match.awayTeam.logo} alt={match.awayTeam.name} width={48} height={48} className="w-10 h-10 sm:w-12 sm:h-12 object-contain" />
+              <span className="font-medium text-center text-sm sm:text-base">{match.awayTeam.name}</span>
             </Link>
           </div>
         </div>
 
         {match.venue && (
-          <div className="text-center text-sm text-zinc-500 mb-2">
+          <div className="text-center text-xs sm:text-sm text-zinc-500 mb-1 sm:mb-2">
             {match.venue.name}, {match.venue.city}
           </div>
         )}
 
         {match.referee && (
-          <div className="text-center text-sm text-zinc-500">
+          <div className="text-center text-xs sm:text-sm text-zinc-500">
             Referee: {match.referee.name} ({match.referee.nationality})
           </div>
         )}
       </div>
 
       {highlight ? (
-        <div className="bg-white dark:bg-zinc-900 rounded-lg shadow p-6 border border-zinc-200 dark:border-zinc-800">
-          <h2 className="text-lg font-bold mb-4 text-zinc-900 dark:text-white">Highlights</h2>
+        <div className="bg-white dark:bg-zinc-900 rounded-lg shadow p-4 sm:p-6 border border-zinc-200 dark:border-zinc-800">
+          <h2 className="text-base sm:text-lg font-bold mb-3 sm:mb-4 text-zinc-900 dark:text-white">Highlights</h2>
           <div className="aspect-video">
             <iframe
               src={highlight.embedUrl}

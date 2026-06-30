@@ -41,11 +41,11 @@ export default async function Home() {
   }>('http://localhost:3000/api/highlights?limit=6');
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <section className="mb-12">
-        <h2 className="text-2xl font-bold mb-6 text-zinc-900 dark:text-white">Top Upcoming Matches</h2>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+      <section className="mb-8 sm:mb-12">
+        <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-zinc-900 dark:text-white">Top Upcoming Matches</h2>
         {matches.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
             {matches.map((match) => (
               <MatchCard
                 key={match.id}
@@ -64,9 +64,9 @@ export default async function Home() {
       </section>
 
       <section>
-        <h2 className="text-2xl font-bold mb-6 text-zinc-900 dark:text-white">Latest Highlights</h2>
+        <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-zinc-900 dark:text-white">Latest Highlights</h2>
         {highlights.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
             {highlights.map((highlight) => (
               <HighlightCard
                 key={highlight.id}

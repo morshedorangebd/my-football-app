@@ -44,17 +44,17 @@ export default async function TeamProfilePage({
 
   if (!team) {
     return (
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
         <EmptyState title="Team not found" />
       </div>
     );
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <div className="flex items-center gap-6 mb-8">
-        <Image src={team.logo} alt={team.name} width={64} height={64} className="object-contain" />
-        <h1 className="text-3xl font-bold text-zinc-900 dark:text-white">{team.name}</h1>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+      <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-6 sm:mb-8">
+        <Image src={team.logo} alt={team.name} width={48} height={48} className="w-12 h-12 sm:w-16 sm:h-16 object-contain" />
+        <h1 className="text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-white">{team.name}</h1>
       </div>
 
       {stats ? (
@@ -68,10 +68,10 @@ export default async function TeamProfilePage({
 
 function StatsDisplay({ stats }: { stats: TeamStats }) {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-      <div className="bg-white dark:bg-zinc-900 rounded-lg shadow p-6 border border-zinc-200 dark:border-zinc-800">
-        <h2 className="text-lg font-bold mb-4 text-zinc-900 dark:text-white">Overall Stats ({stats.season})</h2>
-        <div className="space-y-2 text-sm">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
+      <div className="bg-white dark:bg-zinc-900 rounded-lg shadow p-4 sm:p-6 border border-zinc-200 dark:border-zinc-800">
+        <h2 className="text-base sm:text-lg font-bold mb-3 sm:mb-4 text-zinc-900 dark:text-white">Overall Stats ({stats.season})</h2>
+        <div className="space-y-2 text-xs sm:text-sm">
           <div className="flex justify-between">
             <span className="text-zinc-500">Played</span>
             <span className="font-medium">{stats.total.games.played}</span>
@@ -99,9 +99,9 @@ function StatsDisplay({ stats }: { stats: TeamStats }) {
         </div>
       </div>
 
-      <div className="bg-white dark:bg-zinc-900 rounded-lg shadow p-6 border border-zinc-200 dark:border-zinc-800">
-        <h2 className="text-lg font-bold mb-4 text-zinc-900 dark:text-white">Home Stats</h2>
-        <div className="space-y-2 text-sm">
+      <div className="bg-white dark:bg-zinc-900 rounded-lg shadow p-4 sm:p-6 border border-zinc-200 dark:border-zinc-800">
+        <h2 className="text-base sm:text-lg font-bold mb-3 sm:mb-4 text-zinc-900 dark:text-white">Home Stats</h2>
+        <div className="space-y-2 text-xs sm:text-sm">
           <div className="flex justify-between">
             <span className="text-zinc-500">Played</span>
             <span className="font-medium">{stats.home.games.played}</span>
@@ -117,9 +117,9 @@ function StatsDisplay({ stats }: { stats: TeamStats }) {
         </div>
       </div>
 
-      <div className="bg-white dark:bg-zinc-900 rounded-lg shadow p-6 border border-zinc-200 dark:border-zinc-800">
-        <h2 className="text-lg font-bold mb-4 text-zinc-900 dark:text-white">Away Stats</h2>
-        <div className="space-y-2 text-sm">
+      <div className="bg-white dark:bg-zinc-900 rounded-lg shadow p-4 sm:p-6 border border-zinc-200 dark:border-zinc-800">
+        <h2 className="text-base sm:text-lg font-bold mb-3 sm:mb-4 text-zinc-900 dark:text-white">Away Stats</h2>
+        <div className="space-y-2 text-xs sm:text-sm">
           <div className="flex justify-between">
             <span className="text-zinc-500">Played</span>
             <span className="font-medium">{stats.away.games.played}</span>

@@ -55,15 +55,15 @@ export default async function MatchesPage({
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-bold text-zinc-900 dark:text-white">Fixtures</h1>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 sm:mb-6 gap-3 sm:gap-0">
+        <h1 className="text-xl sm:text-2xl font-bold text-zinc-900 dark:text-white">Fixtures</h1>
       </div>
 
-      <div className="mb-6 flex flex-wrap gap-2">
+      <div className="mb-4 sm:mb-6 flex flex-wrap gap-2 overflow-x-auto pb-2 -mx-1 px-1">
         <a
           href={`/matches?${buildQuery()}`}
-          className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+          className={`px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-colors whitespace-nowrap ${
             !params.countryCode
               ? 'bg-zinc-900 text-white'
               : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700'
@@ -75,7 +75,7 @@ export default async function MatchesPage({
           <a
             key={country.code}
             href={`/matches?${buildQuery(country.code)}`}
-            className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+            className={`px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-colors whitespace-nowrap ${
               params.countryCode === country.code
                 ? 'bg-zinc-900 text-white'
                 : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700'
@@ -87,7 +87,7 @@ export default async function MatchesPage({
       </div>
 
       {data.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
           {data.map((match) => (
             <MatchCard
               key={match.id}
