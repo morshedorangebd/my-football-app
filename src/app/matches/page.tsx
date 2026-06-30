@@ -30,7 +30,7 @@ export const dynamic = 'force-dynamic';
 export default async function MatchesPage({
   searchParams,
 }: {
-  searchParams: Promise<{ country?: string; league?: string; date?: string }>;
+  searchParams: Promise<{ countryCode?: string; league?: string; date?: string }>;
 }) {
   const params = await searchParams;
   const query = new URLSearchParams(params).toString();
@@ -47,9 +47,9 @@ export default async function MatchesPage({
   const buildQuery = (newCountry?: string) => {
     const newParams: Record<string, string> = { ...params };
     if (newCountry) {
-      newParams.country = newCountry;
+      newParams.countryCode = newCountry;
     } else {
-      delete newParams.country;
+      delete newParams.countryCode;
     }
     return new URLSearchParams(newParams).toString();
   };
@@ -64,7 +64,7 @@ export default async function MatchesPage({
         <a
           href={`/matches?${buildQuery()}`}
           className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-            !params.country
+            !params.countryCode
               ? 'bg-zinc-900 text-white'
               : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700'
           }`}
@@ -76,7 +76,7 @@ export default async function MatchesPage({
             key={country.code}
             href={`/matches?${buildQuery(country.code)}`}
             className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-              params.country === country.code
+              params.countryCode === country.code
                 ? 'bg-zinc-900 text-white'
                 : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700'
             }`}

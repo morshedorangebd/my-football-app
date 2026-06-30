@@ -1,6 +1,7 @@
-import { FC } from 'react';
+'use client';
+
+import { FC, useState, useEffect } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 
 interface MatchCardProps {
   id: number;
@@ -12,13 +13,19 @@ interface MatchCardProps {
 }
 
 export const MatchCard: FC<MatchCardProps> = ({ id, homeTeam, awayTeam, league, date, state }) => {
-  const matchDate = new Date(date);
-  const formattedDate = matchDate.toLocaleDateString('en-US', {
-    month: 'short',
-    day: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-  });
+  const [formattedDate, setFormattedDate] = useState('');
+
+  useEffect(() => {
+    const matchDate = new Date(date);
+    setFormattedDate(
+      matchDate.toLocaleDateString('en-US', {
+        month: 'short',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+      })
+    );
+  }, [date]);
 
   const homeLogo = homeTeam.logo && homeTeam.logo.trim() !== '' ? homeTeam.logo : null;
   const awayLogo = awayTeam.logo && awayTeam.logo.trim() !== '' ? awayTeam.logo : null;
@@ -28,11 +35,13 @@ export const MatchCard: FC<MatchCardProps> = ({ id, homeTeam, awayTeam, league, 
       <div className="p-4">
         <div className="flex items-center justify-between mb-2">
           <span className="text-xs text-zinc-500 dark:text-zinc-400">{league.name}</span>
-          <span className="text-xs text-zinc-500 dark:text-zinc-400">{formattedDate}</span>
+          <span className="text-xs text-zinc-500 dark:text-zinc-400" suppressHydrationWarning>
+            {formattedDate}
+          </span>
         </div>
         <div className="flex items-center justify-center gap-4">
           <span className="flex items-center gap-2 hover:opacity-75 transition-opacity min-w-0 max-w-[140px] cursor-pointer">
-            {homeLogo && <Image src={homeLogo} alt={homeTeam.name} width={24} height={24} className="object-contain" />}
+            {homeLogo && <img src={homeLogo} alt={homeTeam.name} width={24} height={24} className="object-contain" />}
             {!homeLogo && <div className="w-6 h-6 bg-zinc-300 dark:bg-zinc-600 rounded" />}
             <span className="text-sm font-medium truncate">{homeTeam.name}</span>
           </span>
@@ -47,7 +56,7 @@ export const MatchCard: FC<MatchCardProps> = ({ id, homeTeam, awayTeam, league, 
           </div>
           <span className="flex items-center gap-2 hover:opacity-75 transition-opacity min-w-0 max-w-[140px] cursor-pointer">
             <span className="text-sm font-medium truncate">{awayTeam.name}</span>
-            {awayLogo && <Image src={awayLogo} alt={awayTeam.name} width={24} height={24} className="object-contain" />}
+            {awayLogo && <img src={awayLogo} alt={awayTeam.name} width={24} height={24} className="object-contain" />}
             {!awayLogo && <div className="w-6 h-6 bg-zinc-300 dark:bg-zinc-600 rounded" />}
           </span>
         </div>
